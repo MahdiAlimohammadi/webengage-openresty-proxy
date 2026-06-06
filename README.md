@@ -29,10 +29,10 @@ Ensure you have Docker and Docker Compose installed:
 ### 2. Configuration
 1. Clone this repository to your server:
    ```bash
-   git clone https://github.com/<your-username>/webengage-openresty-proxy.git
+   git clone https://github.com/MahdiAlimohammadi/webengage-openresty-proxy.git
    cd webengage-openresty-proxy
    ```
-2. Open `proxy.conf` and update `server_name` to your actual custom proxy domain (e.g., `ptest.flytoday.ir`):
+2. Open `proxy.conf` and update `server_name` to your actual custom proxy domain (e.g., `proxy.example.com`):
    ```nginx
    server {
        listen 443 ssl;
@@ -61,16 +61,16 @@ ports:
 You can verify that the proxy works and restricts access locally (before changing public DNS records) by using the `curl --resolve` flag.
 
 ### 1. Verify Allowed Destinations (Should return HTTP 200 OK)
-Run this command from your terminal (replace `172.22.3.167` with your VM host IP if running from a remote machine):
+Run this command from your terminal (replace `proxy.example.com` with your actual proxy domain):
 ```bash
-curl -vk --resolve "ptest.flytoday.ir:443:127.0.0.1" \
-  "https://ptest.flytoday.ir/?url=https://c.webengage.com/healthcheck"
+curl -vk --resolve "proxy.example.com:443:127.0.0.1" \
+  "https://proxy.example.com/?url=https://c.webengage.com/healthcheck"
 ```
 
 ### 2. Verify Blocked Destinations (Should return HTTP 403 Forbidden)
 ```bash
-curl -vk --resolve "ptest.flytoday.ir:443:127.0.0.1" \
-  "https://ptest.flytoday.ir/?url=https://google.com"
+curl -vk --resolve "proxy.example.com:443:127.0.0.1" \
+  "https://proxy.example.com/?url=https://google.com"
 ```
 
 ---
@@ -125,6 +125,10 @@ webengage.init('your-webengage-license-code', {
 ```
 
 ---
+
+## Author
+
+Created by [Mahdi Alimohammadi](https://github.com/MahdiAlimohammadi).
 
 ## License
 
