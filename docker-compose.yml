@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  openresty:
+    image: openresty/openresty:alpine
+    container_name: openresty-proxy
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./proxy.conf:/usr/local/openresty/nginx/conf/proxy.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    restart: unless-stopped

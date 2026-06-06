@@ -1,0 +1,11 @@
+# Ignore SSL certificates and keys
+certs/*
+!certs/.gitkeep
+
+# IDEs and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
